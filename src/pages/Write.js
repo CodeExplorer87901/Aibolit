@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
 import "../pages/All.css";
+import { Link } from "react-router-dom";
 
 function AppointmentForm() {
   const [step, setStep] = useState("select");
@@ -15,6 +16,16 @@ function AppointmentForm() {
     problem: "",
     payment: "card",
   });
+
+  useEffect(() => {
+    // Получаем выбранную услугу из localStorage
+    const selected = localStorage.getItem("selectedServiceDetail");
+    if (selected) {
+      setFormData((prev) => ({ ...prev, problem: selected }));
+      // Можно очистить localStorage, если нужно только один раз подставлять:
+      // localStorage.removeItem("selectedServiceDetail");
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,10 +56,12 @@ function AppointmentForm() {
           <button className="back-button">← НАЗАД</button>
           <h2>Запись на приём</h2>
           <div className="card" onClick={() => setStep("auth")}>
-            Онлайн-консультация <span>2000 ₽</span>
+            Онлайн - Записаться <span>2000 ₽</span>
           </div>
           <div className="card">
-            Приём в клинике <span>Бесплатно</span>
+            <Link to="/contacts">
+            Приём в клинике      <span>Бесплатно</span>
+            </Link>
           </div>
         </div>
       )}

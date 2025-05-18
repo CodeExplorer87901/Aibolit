@@ -9,7 +9,9 @@ function Header() {
   return (
     <>
       <header className="header">
-        <img className="logo" src={logoImg} alt="pets" />
+        <Link to="/">
+          <img className="logo" src={logoImg} alt="pets" />
+        </Link>
         <button
           className="burger-menu"
           onClick={() => setMenuOpen(!menuOpen)}

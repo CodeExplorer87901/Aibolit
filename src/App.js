@@ -6,6 +6,7 @@ import Blog from "./pages/Blog";
 import Collective from "./pages/Collective";
 import History from "./pages/History";
 import Write from "./pages/Write";
+import Share from "./pages/Share";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/collective" element={<Collective />} />
         <Route path="/history" element={<History />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/share" element={<Share />} />
       </Routes>
     </Router>
   );
